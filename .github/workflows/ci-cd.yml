@@ -20,9 +20,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r app/requirements.txt
+            pip install pytest
 
-      - name: Run tests
-        run: pytest app/tests
+          - name: Run tests
+            run: pytest app/tests
 
   deploy:
     runs-on: ubuntu-latest
