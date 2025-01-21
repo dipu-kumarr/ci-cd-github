@@ -20,10 +20,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r app/requirements.txt
-            pip install pytest
+          pip install pytest
 
-          - name: Run tests
-            run: pytest app/tests
+      - name: Run tests
+        run: pytest app/tests
 
   deploy:
     runs-on: ubuntu-latest
@@ -35,8 +35,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID || 'default-access-key-id' }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY || 'default-secret-access-key' }}
           aws-region: ap-south-1
 
       - name: Initialize Terraform
